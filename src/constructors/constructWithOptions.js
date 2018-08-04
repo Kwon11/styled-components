@@ -18,8 +18,12 @@ export default (css: Function) => {
 
     /* This is callable directly as a template function */
     // $FlowFixMe: Not typed to avoid destructuring arguments
-    const templateFunction = (...args) =>
-      componentConstructor(tag, options, css(...args))
+    const templateFunction = (...args) => {
+      const cssString = css(...args)
+      const styledComponent = componentConstructor(tag, options, cssString)
+      styledComponent.css = cssString
+      return styledComponent
+    }
 
     /* If config methods are called, wrap up a new template function and merge options */
     templateFunction.withConfig = config =>
