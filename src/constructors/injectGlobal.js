@@ -6,7 +6,7 @@ import type { Interpolation, Stringifier } from '../types'
 type InjectGlobalFn = (
   strings: Array<string>,
   ...interpolations: Array<Interpolation>
-) => void
+) => string
 
 export default (stringifyRules: Stringifier, css: Function) => {
   const injectGlobal: InjectGlobalFn = (...args) => {
@@ -18,6 +18,7 @@ export default (stringifyRules: Stringifier, css: Function) => {
     if (!styleSheet.hasId(id)) {
       styleSheet.inject(id, stringifyRules(rules))
     }
+    return id
   }
 
   return injectGlobal
