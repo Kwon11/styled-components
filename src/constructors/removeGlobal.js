@@ -7,7 +7,7 @@ export default () => {
   const removeGlobal: RemoveGlobalFn = (...args) => {
     const styleSheet = StyleSheet.master
     const id = args[0]
-    styleSheet.remove(id)
+    styleSheet.remove(id, true)
   }
 
   return removeGlobal

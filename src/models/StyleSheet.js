@@ -289,7 +289,7 @@ class StyleSheet {
   }
 
   /* removes all rules for a given id, which doesn't remove its marker but resets it */
-  remove(id: string) {
+  remove(id: string, deleteTag?: boolean) {
     const tag = this.tagMap[id]
     if (tag === undefined) return
 
@@ -303,6 +303,9 @@ class StyleSheet {
     /* ignore possible rehydrated names */
     this.ignoreRehydratedNames[id] = true
     /* delete possible deferred rules */
+    if (deleteTag) {
+      delete this.tagMap[id]
+    }
     delete this.deferred[id]
   }
 
