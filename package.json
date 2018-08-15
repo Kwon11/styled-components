@@ -33,6 +33,7 @@
     "tslint": "tslint typings/*.ts native/*.ts",
     "typescript": "tsc --project ./typings/tests",
     "precommit": "lint-staged",
+    "prepare": "run-s build",
     "prepublishOnly": "run-s build",
     "lint-staged": "lint-staged",
     "dev": "cross-env BABEL_ENV=cjs babel-node example/startServer.js",
